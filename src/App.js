@@ -1,26 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Link, Route, Switch} from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import SideNav from "./SideNav";
+import MainWindow from "./MainWindow";
+import FolderNav from "./FolderNav";
+import FolderNotes from "./FolderNotes";
+import NoteDetail from "./NoteDetail";
+
+class App extends React.Component {
+
+
+    render() {
+        return (
+            <div className="App">
+                <header>
+                    <Link to="/"><h1>Noteful</h1></Link>
+                    <hr></hr>
+                </header>
+                <div className="content">
+                    <nav>
+                    <Switch>
+                        <Route exact path="/"><SideNav /></Route>
+                        <Route path="/:folderId" component={FolderNav} />
+                    </Switch>
+                    </nav>
+                    <main>
+                    <Switch>
+                        <Route exact path="/"><MainWindow /></Route>
+                        <Route exact path="/:folderId" component={FolderNotes} />
+                        <Route path="/:folderId/:noteId" component={NoteDetail} />
+                    </Switch>
+                    </main>
+                </div>
+
+
+            </div>
+        );
+    }
 }
+
 
 export default App;
