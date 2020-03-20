@@ -1,22 +1,30 @@
 import React from 'react'
-import {Link, useParams, useHistory} from 'react-router-dom'
-import STORE from './dummy-store'
+import APIContext from "./APIContext";
 
-function FolderNav(props) {
-    const params = useParams()
-    const title = STORE.folders.map(folder => {
-        if (folder.id === params.folderId) {
+class FolderNav extends React.Component {
+    static defaultProps = {
+        history: {
+            goBack: () => {}
+        },
+        match: {
+            params: {}
+        }
+    }
+    static contextType = APIContext
+
+    render(){
+    const title = this.context.folders.map(folder => {
+        if (folder.id === this.props.match.params.folderId) {
             return folder.name
         }
     })
-    const history = useHistory()
     return(
         <>
             <h2>{title}</h2>
-            <button onClick={history.goBack}>Go Back</button>
+            <button onClick={this.props.history.goBack}>Go Back</button>
         </>
     )
-
+    }
 }
 
 export default FolderNav

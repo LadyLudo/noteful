@@ -1,9 +1,11 @@
 import React from 'react'
-import STORE from "./dummy-store";
 import Folder from "./Folder";
+import APIContext from "./APIContext";
 
 class SideNav extends React.Component {
-    createFolders = (folders) => {
+    static contextType = APIContext
+
+    renderFolders = (folders) => {
         const created = folders.map(folder => {
             return(
                 <Folder key={folder.id} id={folder.id} name={folder.name} />
@@ -15,7 +17,7 @@ class SideNav extends React.Component {
         return(
 
                 <div className="folders">
-                    {this.createFolders(STORE.folders)}
+                    {this.renderFolders(this.context.folders)}
                     <button className="folder">Create Folder</button>
                 </div>
 
