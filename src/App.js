@@ -10,6 +10,7 @@ import FolderNotes from "./FolderNotes";
 import NoteDetail from "./NoteDetail";
 import AddFolder from "./AddFolder";
 import AddNote from "./AddNote";
+import ServerError from "./ServerError";
 
 class App extends React.Component {
     state = {
@@ -86,16 +87,19 @@ class App extends React.Component {
                     </header>
                     <div className="content">
                         <nav>
+                            <ServerError>
                             <Route exact path="/"><SideNav /></Route>
                             <Route path="/:folderId" component={FolderNav} />
-
+                            </ServerError>
                         </nav>
                         <main>
+                            <ServerError>
                             <Route exact path="/"><MainWindow /></Route>
                             <Route exact path="/:folderId" component={FolderNotes} />
                             <Route path="/:folderId/:noteId" component={NoteDetail} />
                             <Route path="/addFolder" component={AddFolder} />
                             <Route path="/addNote" component={AddNote} />
+                            </ServerError>
                         </main>
                     </div>
                 </div>
