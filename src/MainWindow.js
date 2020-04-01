@@ -1,6 +1,7 @@
 import React from 'react'
 import Note from "./Note";
 import APIContext from "./APIContext";
+import {Link} from 'react-router-dom'
 
 class MainWindow extends React.Component {
     static contextType = APIContext
@@ -18,7 +19,7 @@ class MainWindow extends React.Component {
 
                 <div className="notes">
                     {this.renderNotes(this.context.notes)}
-                    <button >Create Note</button>
+                    <Link to="/addNote"><button>Create Note</button></Link>
                 </div>
 
         )

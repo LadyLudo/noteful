@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Link, Route, Switch} from 'react-router-dom'
+import {Link, Route} from 'react-router-dom'
 import APIContext from "./APIContext";
 
 import SideNav from "./SideNav";
@@ -8,6 +8,8 @@ import MainWindow from "./MainWindow";
 import FolderNav from "./FolderNav";
 import FolderNotes from "./FolderNotes";
 import NoteDetail from "./NoteDetail";
+import AddFolder from "./AddFolder";
+import AddNote from "./AddNote";
 
 class App extends React.Component {
     state = {
@@ -47,11 +49,33 @@ class App extends React.Component {
        })
     };
 
+    handleAddFolder = (folder) => {
+        this.setState({
+            folders: [
+                ...this.state.folders,
+                folder
+            ]
+        })
+    };
+
+    handleAddNote = (note) => {
+        this.setState( {
+            notes: [
+                ...this.state.notes,
+                note
+            ]
+        })
+    };
+
     render() {
         const contextValue = {
             notes: this.state.notes,
             folders: this.state.folders,
-            deleteNote: this.handleDeleteNote};
+            deleteNote: this.handleDeleteNote,
+            createFolder: this.handleAddFolder,
+            createNote: this.handleAddNote
+
+        }
 
         return (
             <APIContext.Provider value={contextValue}>
@@ -62,17 +86,16 @@ class App extends React.Component {
                     </header>
                     <div className="content">
                         <nav>
-                        <Switch>
                             <Route exact path="/"><SideNav /></Route>
                             <Route path="/:folderId" component={FolderNav} />
-                        </Switch>
+
                         </nav>
                         <main>
-                        <Switch>
                             <Route exact path="/"><MainWindow /></Route>
                             <Route exact path="/:folderId" component={FolderNotes} />
                             <Route path="/:folderId/:noteId" component={NoteDetail} />
-                        </Switch>
+                            <Route path="/addFolder" component={AddFolder} />
+                            <Route path="/addNote" component={AddNote} />
                         </main>
                     </div>
                 </div>

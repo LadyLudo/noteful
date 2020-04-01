@@ -1,6 +1,7 @@
 import React from 'react'
 import Folder from "./Folder";
 import APIContext from "./APIContext";
+import {Link} from 'react-router-dom'
 
 class SideNav extends React.Component {
     static contextType = APIContext
@@ -18,7 +19,7 @@ class SideNav extends React.Component {
 
                 <div className="folders">
                     {this.renderFolders(this.context.folders)}
-                    <button className="folder">Create Folder</button>
+                    <Link to="/addFolder"><button className="folder">Create Folder</button></Link>
                 </div>
 
 
