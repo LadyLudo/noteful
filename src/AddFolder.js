@@ -28,7 +28,7 @@ class AddFolder extends React.Component {
                 return result.json()
             })
             .then(newFolder => {
-                this.context.addFolder(newFolder)
+                this.context.createFolder(newFolder)
                 this.props.history.push('/')
             })
             .catch(error => {
@@ -43,7 +43,7 @@ class AddFolder extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <h2>Create a folder</h2>
                     <label for="folderName">Folder name: </label>
-                    <input type="text" id="folderName" name="folderName"/>
+                    <input type="text" id="folderName" name="folderName" required/>
                     <br/>
                     <button type="submit">Create</button>
                 </form>

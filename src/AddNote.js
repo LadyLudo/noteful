@@ -45,7 +45,7 @@ class AddNote extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <h2>Create a Note</h2>
                     <label for='noteTitle'>Title: </label>
-                    <input type='text' id='noteTitle' name='noteTitle' />
+                    <input type='text' id='noteTitle' name='noteTitle' required/>
                     <br/>
                     <label for='noteContent'>Content: </label>
                     <textarea id='noteContent' name='noteContent' />
