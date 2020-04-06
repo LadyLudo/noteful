@@ -44,13 +44,13 @@ class AddNote extends React.Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <h2>Create a Note</h2>
-                    <label for='noteTitle'>Title: </label>
-                    <input type='text' id='noteTitle' name='noteTitle' required/>
+                    <label htmlFor='noteTitle'>Title: </label>
+                    <input type='text' id='noteTitle' name='noteTitle' required aria-required="true"/>
                     <br/>
-                    <label for='noteContent'>Content: </label>
+                    <label htmlFor='noteContent'>Content: </label>
                     <textarea id='noteContent' name='noteContent' />
                     <br/>
-                    <label for='folderSelect'>Folder: </label>
+                    <label htmlFor='folderSelect'>Folder: </label>
                     <select id='folderSelect' name='folderSelect'>
                         <option value={null}>...</option>
                         {folders.map(folder =>

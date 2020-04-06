@@ -42,8 +42,8 @@ class AddFolder extends React.Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <h2>Create a folder</h2>
-                    <label for="folderName">Folder name: </label>
-                    <input type="text" id="folderName" name="folderName" required/>
+                    <label htmlFor="folderName">Folder name: </label>
+                    <input type="text" id="folderName" name="folderName" required aria-required="true"/>
                     <br/>
                     <button type="submit">Create</button>
                 </form>
