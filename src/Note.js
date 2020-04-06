@@ -3,6 +3,7 @@ import "./Note.css"
 import {Link} from 'react-router-dom'
 import moment from "moment";
 import APIContext from "./APIContext";
+import PropTypes from 'prop-types'
 
 
 class Note extends React.Component {
@@ -12,6 +13,7 @@ class Note extends React.Component {
         }
     }
     static contextType = APIContext
+
     onDelete = (noteId) => {
         this.context.deleteNote(noteId, this.props.folderId);
     }
@@ -30,3 +32,9 @@ class Note extends React.Component {
 }
 
 export default Note
+
+Note.propTypes = {
+    folderId: PropTypes.string,
+    id: PropTypes.string,
+    name: PropTypes.string
+}

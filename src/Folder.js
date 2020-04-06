@@ -1,6 +1,7 @@
 import React from 'react'
 import './Folder.css'
 import {Link} from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 function Folder(props) {
     return(
@@ -9,3 +10,8 @@ function Folder(props) {
 }
 
 export default Folder
+
+Folder.propTypes = {
+    id: PropTypes.string,
+    name: PropTypes.string
+}
