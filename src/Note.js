@@ -35,6 +35,6 @@ export default Note
 
 Note.propTypes = {
     folderId: PropTypes.string,
-    id: PropTypes.string,
-    name: PropTypes.string
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
 }
