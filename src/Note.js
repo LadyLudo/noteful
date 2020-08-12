@@ -15,15 +15,17 @@ class Note extends React.Component {
     static contextType = APIContext
 
     onDelete = (noteId) => {
-        this.context.deleteNote(noteId, this.props.folderId);
+        this.context.deleteNote(noteId, this.props.folder);
+        window.location.reload();
     }
     render() {
         const date = moment(this.props.modified)
+
         return(
             <div className="note">
-                <Link to={`./${this.props.folderId}/${this.props.id}`}><h2 className="noteName">{this.props.name}</h2></Link>
+                <Link to={`/note/${this.props.id}`}><h2 className="noteTitle">{this.props.name}</h2></Link>
                 <div className="noteInfo">
-                    <p>Date modified on {date._d.toString()}</p>
+                    <p className="date"><strong>Date created: </strong>{date.format("MMM Do YYYY")}</p>
                     <button className="noteName" onClick={() => this.onDelete(this.props.id)}>Delete Note</button>
                 </div>
             </div>

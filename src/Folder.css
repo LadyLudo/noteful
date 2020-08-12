@@ -2,5 +2,20 @@
 .folder {
     border: black 1px solid;
     padding: 10px;
-    margin: 5px
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.folderName {
+    align-self: center;
+    margin-top: 10px;
+}
+.folderTitle {
+    color: #0B9ED9;
+}
+.folderButton {
+    position: absolute;
+    margin-left: 0px;
+    margin-top: 0px;
+    font-size: 10px;
 }

@@ -20,8 +20,8 @@ class App extends React.Component {
 
     componentDidMount() {
         Promise.all([
-            fetch('http://localhost:9090/notes'),
-            fetch('http://localhost:9090/folders')
+            fetch('http://localhost:8000/notes'),
+            fetch('http://localhost:8000/folders')
         ])
             .then(([notesRes, foldersRes]) => {
                 if (!notesRes.ok)
@@ -42,11 +42,26 @@ class App extends React.Component {
         this.setState({
             notes: this.state.notes.filter(note => note.id !== noteId)
         });
-       fetch(`http://localhost:9090/${folderId}/${noteId}`, {
+       fetch(`http://localhost:8000/notes/${noteId}`, {
            method: 'DELETE',
            headers: {
                'content-type' : 'application/json'
            },
+       })
+    };
+
+    handleDeleteFolder = (folderId) => {
+        this.setState({
+            notes: this.state.folders.filter(folder => folder.id !== folderId)
+        });
+       fetch(`http://localhost:8000/folders/${folderId}`, {
+           method: 'DELETE',
+           headers: {
+               'content-type' : 'application/json'
+           },
+       })
+       .then(res => {
+        window.location.reload();
        })
     };
 
@@ -74,7 +89,8 @@ class App extends React.Component {
             folders: this.state.folders,
             deleteNote: this.handleDeleteNote,
             createFolder: this.handleAddFolder,
-            createNote: this.handleAddNote
+            createNote: this.handleAddNote,
+            deleteFolder: this.handleDeleteFolder
 
         }
 
@@ -82,7 +98,7 @@ class App extends React.Component {
             <APIContext.Provider value={contextValue}>
                 <div className="App">
                     <header>
-                        <Link to="/"><h1>Noteful</h1></Link>
+                        <Link to="/"><h1 className="app_title">Noteful</h1></Link>
                         <hr></hr>
                     </header>
                     <div className="content">
@@ -96,7 +112,7 @@ class App extends React.Component {
                             <ServerError>
                             <Route exact path="/"><MainWindow /></Route>
                             <Route exact path="/:folderId" component={FolderNotes} />
-                            <Route path="/:folderId/:noteId" component={NoteDetail} />
+                            <Route path="/note/:noteId" component={NoteDetail} />
                             <Route path="/addFolder" component={AddFolder} />
                             <Route path="/addNote" component={AddNote} />
                             </ServerError>

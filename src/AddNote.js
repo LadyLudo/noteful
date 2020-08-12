@@ -12,12 +12,12 @@ class AddNote extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const newNote = {
-            name: event.target['noteTitle'].value,
+            title: event.target['noteTitle'].value,
             content: event.target['noteContent'].value,
-            folderId: event.target['folderSelect'].value,
+            folder: event.target['folderSelect'].value,
             modified: new Date(),
         }
-        fetch('http://localhost:9090/notes', {
+        fetch('http://localhost:8000/notes', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -31,7 +31,7 @@ class AddNote extends React.Component {
             })
             .then(note => {
                 this.context.createNote(note)
-                this.props.history.push(`/${note.folderId}`)
+                this.props.history.push(`/note/${note.id}`)
             })
             .catch(error => {
                 console.error({ error })
@@ -54,7 +54,7 @@ class AddNote extends React.Component {
                     <select id='folderSelect' name='folderSelect'>
                         <option value={null}>...</option>
                         {folders.map(folder =>
-                            <option key={folder.id} value={folder.id}>{folder.name}</option>
+                            <option key={folder.id.toString()} value={folder.id.toString()}>{folder.folder_name}</option>
                         )}
                     </select>
                     <br/>

@@ -12,9 +12,19 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.app_title {
+  font-family: 'Cinzel Decorative', cursive;
+  color: #0B9ED9;
+  font-size: 60px;
+}
+a:link {
+  text-decoration: none;
+}
 .content {
   display: flex;
   flex-direction: row;
+  font-family: 'Open Sans', sans-serif;
 }
 main {
   display: flex;

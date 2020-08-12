@@ -16,10 +16,10 @@ class NoteDetail extends React.Component {
     }
     render() {
     const noteDetail = this.context.notes.map(note => {
-        if (note.id === this.props.match.params.noteId) {
+        if (note.id == this.props.match.params.noteId) {
             return(
                 <div className="note" key={note.id}>
-                    <h2>{note.name}</h2>
+                    <h2>{note.title}</h2>
                     <p>Date modified: {moment(note.modified)._d.toString()}</p>
                     <p>{note.content}</p>
                     <button onClick={() => this.onDelete(note.id) }>Delete Note</button>

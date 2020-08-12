@@ -11,9 +11,9 @@ class FolderNotes extends React.Component {
     static contextType = APIContext
     render(){
     const created = this.context.notes.map(note => {
-        if (note.folderId === this.props.match.params.folderId) {
+        if (note.folder == this.props.match.params.folderId) {
             return(
-                <Note key={note.id} id={note.id} folderId={note.folderId} name={note.name} modified={note.modified} />
+                <Note key={note.id.toString()} id={note.id.toString()} folderId={note.folder.toString()} name={note.title} modified={note.modified} />
             )
         }
     })

@@ -9,7 +9,7 @@ class SideNav extends React.Component {
     renderFolders = (folders) => {
         const created = folders.map(folder => {
             return(
-                <Folder key={folder.id} id={folder.id} name={folder.name} />
+                <Folder key={folder.id.toString()} id={folder.id.toString()} name={folder.folder_name} />
             )
         })
         return(created)
@@ -18,8 +18,8 @@ class SideNav extends React.Component {
         return(
 
                 <div className="folders">
+                    <Link to="/addFolder"><button className="createFolder">Create Folder</button></Link>
                     {this.renderFolders(this.context.folders)}
-                    <Link to="/addFolder"><button className="folder">Create Folder</button></Link>
                 </div>
 
 

@@ -6,8 +6,11 @@
     margin: 0px 20px 0px 20px
 }
 .noteName {
-    align-self: flex-start;
+    
     margin-left: 20px;
+}
+.noteTitle {
+    color: #0B9ED9;
 }
 .note {
     display: flex;

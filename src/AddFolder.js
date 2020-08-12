@@ -12,10 +12,10 @@ class AddFolder extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const newFolder = {
-            name: event.target['folderName'].value
+            folder_name: event.target['folderName'].value
         }
 
-        fetch('http://localhost:9090/folders', {
+        fetch('http://localhost:8000/folders', {
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'

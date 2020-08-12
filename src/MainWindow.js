@@ -9,7 +9,7 @@ class MainWindow extends React.Component {
     renderNotes = (notes) => {
         const created = notes.map(note => {
             return(
-                <Note key={note.id} id={note.id} folderId={note.folderId} name={note.name} modified={note.modified} />
+                <Note key={note.id.toString()} id={note.id.toString()} folderId={note.folderId} name={note.title} modified={note.modified} />
             )
         })
         return(created)
@@ -18,8 +18,8 @@ class MainWindow extends React.Component {
         return(
 
                 <div className="notes">
-                    {this.renderNotes(this.context.notes)}
                     <Link to="/addNote"><button>Create Note</button></Link>
+                    {this.renderNotes(this.context.notes)}
                 </div>
 
         )
