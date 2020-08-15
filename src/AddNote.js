@@ -1,5 +1,6 @@
 import React from 'react'
 import APIContext from "./APIContext";
+import API_ENDPOINT from "./config"
 
 class AddNote extends React.Component {
     static defaultProps = {
@@ -17,7 +18,7 @@ class AddNote extends React.Component {
             folder: event.target['folderSelect'].value,
             modified: new Date(),
         }
-        fetch('http://localhost:8000/notes', {
+        fetch(`http://${API_ENDPOINT}/notes`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
