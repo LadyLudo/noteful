@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import {Link, Route} from 'react-router-dom'
 import APIContext from "./APIContext";
-import API_ENDPOINT from "./config"
+import config from "./config"
 
 import SideNav from "./SideNav";
 import MainWindow from "./MainWindow";
@@ -21,8 +21,8 @@ class App extends React.Component {
 
     componentDidMount() {
         Promise.all([
-            fetch(`http://${API_ENDPOINT}/notes`),
-            fetch(`http://${API_ENDPOINT}/folders`)
+            fetch(`${config.API_ENDPOINT}/notes`),
+            fetch(`${config.API_ENDPOINT}/folders`)
         ])
             .then(([notesRes, foldersRes]) => {
                 if (!notesRes.ok)
@@ -43,7 +43,7 @@ class App extends React.Component {
         this.setState({
             notes: this.state.notes.filter(note => note.id !== noteId)
         });
-       fetch(`http://${API_ENDPOINT}/notes/${noteId}`, {
+       fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
            method: 'DELETE',
            headers: {
                'content-type' : 'application/json'
@@ -55,7 +55,7 @@ class App extends React.Component {
         this.setState({
             notes: this.state.folders.filter(folder => folder.id !== folderId)
         });
-       fetch(`http://${API_ENDPOINT}/folders/${folderId}`, {
+       fetch(`${config.API_ENDPOINT}/folders/${folderId}`, {
            method: 'DELETE',
            headers: {
                'content-type' : 'application/json'

@@ -1,6 +1,6 @@
 import React from 'react'
 import APIContext from "./APIContext";
-import API_ENDPOINT from "./config"
+import config from "./config"
 
 class AddFolder extends React.Component {
     static defaultProps = {
@@ -16,7 +16,7 @@ class AddFolder extends React.Component {
             folder_name: event.target['folderName'].value
         }
 
-        fetch(`http://${API_ENDPOINT}/folders`, {
+        fetch(`${config.API_ENDPOINT}/folders`, {
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
